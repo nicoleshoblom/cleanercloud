@@ -8,7 +8,7 @@ let navLinks = pages
     let name = page.pagetitle || page.file.split('/').pop().replace('.astro', '');
     let fileName = page.file.split('/').pop().replace('.astro', '');
     // If index, link to /cleanercloud/, else /cleanercloud/filename
-    let path = fileName === 'index' ? '/cleanercloud/' : `/cleanercloud/${fileName}`;
+    let path = fileName === 'index' ? '/cleanercloud/' : `/cleanercloud/${fileName}/`;
     return { name, path, fileName };
   });
 
