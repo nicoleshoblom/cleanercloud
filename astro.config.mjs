@@ -1,9 +1,12 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
+const isCustomDomain = process.env.CUSTOM_DOMAIN === 'true';
+
 export default defineConfig({
-    output: 'static',
-    site: 'https://nicoleshoblom.github.io',
-    base: '/cleanercloud/',
-})
+  output: 'static',
+  base: isCustomDomain ? '/' : '/cleanercloud/',
+  site: isCustomDomain
+    ? 'https://www.cleanercloudsolutions.com'
+    : 'https://nicoleshoblom.github.io/cleanercloud/',
+  trailingSlash: 'always',
+});

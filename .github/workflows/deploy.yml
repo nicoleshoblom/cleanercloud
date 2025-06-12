@@ -13,6 +13,8 @@ permissions:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+        CUSTOM_DOMAIN: true
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -36,6 +38,9 @@ jobs:
   deploy:
     needs: build-and-deploy
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
