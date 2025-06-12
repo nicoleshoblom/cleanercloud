@@ -5,5 +5,6 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
     output: 'static',
     site: 'https://nicoleshoblom.github.io/cleanercloud',
-    base: '/cleanercloud/'
+    base: '/cleanercloud/',
+    trailingSlash: 'always'
 })
