@@ -1,22 +1,205 @@
+---
+const pages = await Astro.glob('../pages/*.astro');
+
+// Filter out special files like 404.astro if needed
+let navLinks = pages
+  .filter(page => !page.file.includes('404'))
+  .map(page => {
+    let name = page.pagetitle || page.file.split('/').pop().replace('.astro', '');
+    let fileName = page.file.split('/').pop().replace('.astro', '');
+    // If index, link to /cleanercloud/, else /cleanercloud/filename
+    let path = fileName === 'index' ? '/cleanercloud/' : `/cleanercloud/${fileName}`;
+    return { name, path, fileName };
+  });
+
+// Sort so that 'index' (Home) is always first
+navLinks = [
+  ...navLinks.filter(link => link.fileName === 'index'),
+  ...navLinks.filter(link => link.fileName !== 'index')
+];
+---
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+    <head>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const variable = "cleanerkchallenge";
+            const isAuthorized = sessionStorage.getItem("authorized");
+            if (!isAuthorized) {
+                const input = prompt("This site is password protected. Please enter the password:");
+                if (input === variable) {
+                    sessionStorage.setItem("authorized", "true");
+                } else {
+                    document.body.innerHTML = "<h1>Access Denied</h1>";
+                }
+            }
+        });
+        </script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Astro Basics</title>
+    </head>
+    <body>
+        <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle" hidden />
+        <aside class="sidebar">
+            <label for="sidebar-toggle" class="sidebar-toggle-btn">&#9776;</label>
+            <nav>
+                <ul>
+                    {navLinks.map(link => (
+                        <li><a href={link.path}>{link.name}</a></li>
+                    ))}
+                </ul>
+            </nav>
+        </aside>
+        <div class="main-content">
+            <header class="site-header">
+                <h2>Cleaner Cloud</h2>
+            </header>
+            <main>
+                <slot />
+            </main>
+        </div>
+    </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+body {
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+}
+.sidebar {
+    background: #f5f5f5;
+    border-right: 1px solid #ddd;
+    width: 220px;
+    min-width: 180px;
+    padding: 2rem 1rem 1rem 1rem;
+    box-sizing: border-box;
+    position: relative;
+    transition: transform 0.3s ease;
+    height: 100vh; /* Make sidebar full height */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.sidebar nav {
+    flex: 1;
+}
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar nav ul li {
+    margin-bottom: 1.2rem;
+}
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+.sidebar-toggle-btn {
+    display: none;
+    position: absolute;
+    top: 1rem;
+    right: -2.5rem;
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 0.5rem 0.7rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+}
+.main-content {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.site-header {
+    text-align: center;
+    padding: 0.5rem 0 0.5rem 0; /* Reduced vertical padding */
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    font-size: 1.5rem; /* Slightly smaller font */
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 0;
+    /* Remove extra spacing if any */
+}
+main {
+    padding: 2rem;
+}
+.two-sections {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+}
+.left-section, .right-section {
+    flex: 1 1 0;
+    background: #f8f8f8;
+    padding: 2.5rem 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    min-width: 0; /* Allow to shrink */
+    font-size: 1.15rem;
+    box-sizing: border-box;
+}
+.left-section h2, .right-section h2 {
+    text-align: center;
+}
+@media (max-width: 1000px) {
+    .two-sections {
+      flex-direction: column;
+      align-items: center;
+    }
+    .left-section, .right-section {
+      max-width: 95vw;
+      min-width: unset;
+      padding: 2rem 1rem;
+    }
+    .main-content {
+      padding: 0 0.5rem;
+    }
+}
+.sidebar-toggle:checked + .sidebar {
+    transform: translateX(0);
+}
+.main-content {
+    width: 100%;
+}
+@media (max-width: 700px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        width: 200px;
+        transform: translateX(-100%);
+        z-index: 100;
+        padding-top: 3rem;
+    }
+    .sidebar-toggle-btn {
+        display: block;
+    }
+    .sidebar-toggle:checked + .sidebar {
+        transform: translateX(0);
+    }
+    .main-content {
+        width: 100%;
+    }
+}
 </style>

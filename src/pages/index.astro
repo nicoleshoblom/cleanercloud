@@ -1,13 +1,81 @@
 ---
+export const pagetitle = "Home"; // or any title you want
+
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
-
 <Layout>
-	<p>
-		Hello
-	</p>
+    <p class="spaced-paragraph">
+        Welcome to your cloud’s personal IT department. Our goal is to “Marie Kondo” your cloud email, drive, and photos.<br />
+        <br />
+        Do you want to save on paying for more cloud storage?<br />
+        <br />
+        Do you miss important emails in your cluttered mailbox?<br />
+        <br />
+        Can’t receive emails or can’t share photos cause you’ve hit your storage limit?<br />
+        <br />
+        Just plain tired of how messy your cloud email, photos, and drive are?<br />
+        <br />
+        Or got other cloud problems?<br />
+        <br />
+        Then you’ve come to the right place! We want to help you.
+    </p>
+
+    <div class="two-sections">
+      <section class="left-section">
+        <h2>Cleaner Cloud Service</h2>
+        <!-- Add content for Cleaner Cloud Service here -->
+        <p>Professional help to organize, clean, and optimize your cloud storage and email.</p>
+      </section>
+      <section class="right-section">
+        <h2>Cleaner Cloud Suite</h2>
+        <!-- Add content for Cleaner Cloud Suite here -->
+        <p>Tools and resources for you to manage your cloud storage and email on your own.</p>
+      </section>
+    </div>
+
+    <style>
+      .spaced-paragraph {
+        line-height: 1.6;
+        text-align: center;
+      }
+      .two-sections {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+        justify-content: center;
+        align-items: stretch;
+        width: 100%;
+        max-width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+      }
+      .left-section, .right-section {
+        flex: 1 1 0;
+        background: #f8f8f8;
+        padding: 3rem 2.5rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        min-width: 0; /* Allow to shrink */
+        font-size: 1.15rem;
+        box-sizing: border-box;
+      }
+      .left-section h2, .right-section h2 {
+        text-align: center;
+      }
+      @media (max-width: 1000px) {
+        .two-sections {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+          max-width: 100vw;
+        }
+        .left-section, .right-section {
+          max-width: 95vw;
+          min-width: 0;
+          padding: 2rem 1rem;
+        }
+      }
+    </style>
 </Layout>
