@@ -1,0 +1,86 @@
+---
+export const pagetitle = "Team";
+
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+---
+<Layout>
+  <div class="who-sections">
+    <section class="who-left">
+      <img src={`${import.meta.env.BASE_URL}linkedin_pic.webp`} alt="Nicole Shoblom LinkedIn" class="profile-pic" />
+    </section>
+    <section class="who-right">
+      <h2>Nicole Shoblom</h2>
+      <p>
+        The team is currently a one-woman show! Nicole is the CEO and Founder of Cleaner Cloud Solutions. She has 10+ years of industry experience in data science building innovative technology for farmers, IT teams, ecommerce engineers, supply chain teams, and merchandisers. Nicole holds a PhD in Statistics and Applied Math from the University of California, Santa Cruz. Lately she has been making websites using Astro web framework and is taking Korean language classes! Check out her full <a href="https://www.nicoleshoblom.com/resume/">resume</a>.
+      </p>
+    </section>
+  </div>
+  <style>
+    .who-sections {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+      justify-content: center;
+      align-items: stretch;
+      width: 100%;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+    .who-left, .who-right {
+      flex: 1 1 0;
+      background: #f8f8f8;
+      padding: 0;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      min-width: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .who-left {
+      padding: 0;
+      background: transparent; /* Remove gray background */
+      box-shadow: none;        /* Remove box shadow */
+    }
+    .who-right {
+      background: transparent; /* Remove gray background */
+      box-shadow: none;        /* Remove box shadow */
+    }
+    .profile-pic {
+      width: 70%;
+      height: auto;
+      max-width: 300px;
+      min-width: 120px;
+      max-height: 350px;
+      object-fit: contain;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+      margin-bottom: 0;
+      display: block;
+    }
+    @media (max-width: 800px) {
+      .who-sections {
+        flex-direction: column;
+        align-items: center;
+        max-width: 98vw;
+      }
+      .who-left, .who-right {
+        max-width: 95vw;
+        padding: 0;
+      }
+      .profile-pic {
+        width: 80%;
+        max-width: 220px;
+        min-height: 100px;
+      }
+    }
+  </style>
+</Layout>

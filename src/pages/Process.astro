@@ -1,16 +1,101 @@
 ---
-export const pagetitle = "Process"; // or any title you want
+export const pagetitle = "Process";
 
 import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 <Layout>
-    <p class="spaced-paragraph">
-    </p>
-</Layout>
-<style>
-      .spaced-paragraph {
-        line-height: 1.2;
-        text-align: center;
+  <div class="process-sections">
+    <section class="process-left">
+      <h2>Cleaner Cloud Suite</h2>
+      <ul class="process-list">
+        <li>
+          Pay the one time fee of ₩2,400 for a one time cleanup, or subscribe ₩2,400/month for unlimited cleanup.
+        </li>
+        <li>
+          After purchasing the suite (or single products within the suite), you will be able to download the program.
+        </li>
+        <li>
+          After downloading, open the program. It will take you to an annotation GUI where you will be asked to label randomly chosen emails, files, photos as “delete” or “keep”. This labelled data will serve as fresh training data for the suite’s machine learning algorithm.
+        </li>
+        <li>
+          The machine learning algorithm will then be further tuned with the freshly labelled data you provided. It will then recommend emails, files, photos that can be deleted in bulk.
+        </li>
+        <li>
+          The suite will also give you AI generated summaries in text or reel format of what will be deleted.
+        </li>
+        <li>
+          Once you approve these summaries, the suite will clean up your cloud!
+        </li>
+      </ul>
+    </section>
+    <section class="process-right">
+      <h2>Cleaner Cloud Service</h2>
+      <ul class="process-list">
+        <li>
+          Set up a call for a free consultation with one of our IT help desk technicians via this Calendly. Link to Calendly will be available soon.
+        </li>
+        <li>
+          Our IT help desk technician with ask for your consent to record the conversation that we have with you.
+        </li>
+        <li>
+          By the end of the call the IT help desk technician will share a curated plan to help you with your cloud problems.
+        </li>
+        <li>
+          If you approve the plan the technician will send the plan to our finance team who will then call you with a quote.
+        </li>
+        <li>
+          Our IT help desk technicians will then work with you to execute the plan in the amount of time determined in the plan.
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <style>
+    .process-sections {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+      justify-content: center;
+      align-items: stretch;
+      width: 100%;
+      max-width: 1600px;
+      margin-left: auto;
+      margin-right: auto;
+      box-sizing: border-box;
+    }
+    .process-left, .process-right {
+      flex: 1 1 0;
+      background: #f8f8f8;
+      padding: 3rem 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+      min-width: 0;
+      font-size: 1.2rem; /* Smaller font size */
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .process-list {
+      text-align: left;
+      margin: 2rem auto 0 auto;
+      max-width: 600px;
+      padding-left: 1.2em;
+      font-size: 0.95em; /* Smaller font size for list */
+    }
+    .process-list li {
+      margin-bottom: 1.2em;
+      line-height: 1.6;
+    }
+    @media (max-width: 800px) {
+      .process-sections {
+        flex-direction: column;
+        align-items: center;
+        max-width: 100vw;
       }
-</style>
+      .process-left, .process-right {
+        max-width: 98vw;
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</Layout>
