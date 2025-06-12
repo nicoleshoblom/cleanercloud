@@ -2,13 +2,14 @@
 const pages = await Astro.glob('../pages/*.astro');
 
 // Filter out special files like 404.astro if needed
+const base = import.meta.env.BASE_URL;
 let navLinks = pages
   .filter(page => !page.file.includes('404'))
   .map(page => {
     let name = page.pagetitle || page.file.split('/').pop().replace('.astro', '');
     let fileName = page.file.split('/').pop().replace('.astro', '');
-    // Add trailing slash for subpages
-    let path = fileName === 'index' ? '/cleanercloud/' : `/cleanercloud/${fileName}/`;
+    // Use BASE_URL for all links
+    let path = fileName === 'index' ? base : `${base}${fileName}/`;
     return { name, path, fileName };
   });
 
