@@ -32,11 +32,21 @@ const currentPath = Astro.url.pathname;
             const variable = "cleanerkchallenge";
             const isAuthorized = sessionStorage.getItem("authorized");
             if (!isAuthorized) {
-                const input = prompt("This site is password protected. See Business Item for password. Please enter the password:");
-                if (input === variable) {
-                    sessionStorage.setItem("authorized", "true");
-                } else {
-                    document.body.innerHTML = "<h1>Access Denied</h1>";
+                let input;
+                while (true) {
+                    input = prompt("This site is password protected. See Business Item for password. Please enter the password:");
+                    if (input === null) {
+                        // User hit cancel, ask if they want to try again
+                        if (!confirm("No password entered. Do you want to try again?")) {
+                            document.body.innerHTML = "<h1>Access Denied</h1>";
+                            break;
+                        }
+                    } else if (input === variable) {
+                        sessionStorage.setItem("authorized", "true");
+                        break;
+                    } else {
+                        alert("Incorrect password. Please try again.");
+                    }
                 }
             }
         });
