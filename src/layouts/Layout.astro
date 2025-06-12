@@ -32,7 +32,7 @@ const currentPath = Astro.url.pathname;
             const variable = "cleanerkchallenge";
             const isAuthorized = sessionStorage.getItem("authorized");
             if (!isAuthorized) {
-                const input = prompt("This site is password protected. Please enter the password:");
+                const input = prompt("This site is password protected. See Business Item for password. Please enter the password:");
                 if (input === variable) {
                     sessionStorage.setItem("authorized", "true");
                 } else {
