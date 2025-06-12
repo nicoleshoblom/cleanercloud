@@ -16,7 +16,7 @@ import Layout from '../layouts/Layout.astro';
         <br />
         Just plain tired of how messy your cloud email, photos, and drive are?<br />
         <br />
-        Or got other cloud problems?<br />
+        Got other cloud problems?<br />
         <br />
         Then you’ve come to the right place! We want to help you.
     </p>
@@ -24,19 +24,19 @@ import Layout from '../layouts/Layout.astro';
     <div class="two-sections">
       <section class="left-section">
         <h2>Cleaner Cloud Service</h2>
-        <!-- Add content for Cleaner Cloud Service here -->
-        <p>Professional help to organize, clean, and optimize your cloud storage and email.</p>
+        <p>Schedule time with one of our IT help desk technicians to create a personalized plan to solve your cloud problems. Meetings with our IT technicians are free of charge, but we ask that we can record our conversation with you.</p>
+        <a href="/cleanercloud/Purchase" class="purchase-btn">Purchase</a>
       </section>
       <section class="right-section">
         <h2>Cleaner Cloud Suite</h2>
-        <!-- Add content for Cleaner Cloud Suite here -->
-        <p>Tools and resources for you to manage your cloud storage and email on your own.</p>
+        <p>Download our AI assisted program to clean up photos, files, and emails in your cloud to save on cloud storage costs. The suite comes with <b>Cleaner Cloud Photos</b>, <b>Cleaner Cloud Drive</b>, and <b>Cleaner Cloud Email</b></p>
+        <a href="/cleanercloud/Purchase" class="purchase-btn">Purchase</a>
       </section>
     </div>
 
     <style>
       .spaced-paragraph {
-        line-height: 1.6;
+        line-height: 1.2;
         text-align: center;
       }
       .two-sections {
@@ -57,9 +57,27 @@ import Layout from '../layouts/Layout.astro';
         padding: 3rem 2.5rem;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        min-width: 0; /* Allow to shrink */
+        min-width: 0;
         font-size: 1.15rem;
         box-sizing: border-box;
+        text-align: center;
+      }
+      .purchase-btn {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.75rem 2rem;
+        background: #4a90e2;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background 0.2s;
+        cursor: pointer;
+      }
+      .purchase-btn:hover {
+        background: #357ab8;
       }
       .left-section h2, .right-section h2 {
         text-align: center;
