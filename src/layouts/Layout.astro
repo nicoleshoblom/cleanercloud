@@ -7,7 +7,7 @@ let navLinks = pages
   .map(page => {
     let name = page.pagetitle || page.file.split('/').pop().replace('.astro', '');
     let fileName = page.file.split('/').pop().replace('.astro', '');
-    // If index, link to /cleanercloud/, else /cleanercloud/filename
+    // Add trailing slash for subpages
     let path = fileName === 'index' ? '/cleanercloud/' : `/cleanercloud/${fileName}/`;
     return { name, path, fileName };
   });
