@@ -17,6 +17,9 @@ navLinks = [
   ...navLinks.filter(link => link.fileName === 'index'),
   ...navLinks.filter(link => link.fileName !== 'index')
 ];
+
+// Get current path for highlighting
+const currentPath = Astro.url.pathname;
 ---
 <!doctype html>
 <html lang="en">
@@ -44,11 +47,20 @@ navLinks = [
     <body>
         <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle" hidden />
         <aside class="sidebar">
-            <label for="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle sidebar">&#8250;</label>
+            <label for="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+                <span class="carrot">&#8250;</span>
+            </label>
             <nav>
                 <ul>
                     {navLinks.map(link => (
-                        <li><a href={link.path}>{link.name}</a></li>
+                        <li>
+                            <a 
+                              href={link.path} 
+                              class={currentPath === link.path ? 'active' : ''}
+                            >
+                              {link.name}
+                            </a>
+                        </li>
                     ))}
                 </ul>
             </nav>
@@ -101,6 +113,15 @@ body {
     text-decoration: none;
     color: #333;
     font-weight: 500;
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    display: block;
+    transition: background 0.2s, color 0.2s;
+}
+.sidebar nav ul li a.active {
+    background: #4a90e2;
+    color: #fff;
+    font-weight: 700;
 }
 .sidebar-toggle-btn {
     display: none;
@@ -119,6 +140,10 @@ body {
 .sidebar-toggle-btn:active,
 .sidebar-toggle-btn:focus {
     background: #e0e0e0;
+}
+.sidebar-toggle-btn .carrot {
+    display: inline-block;
+    transition: transform 0.3s;
 }
 .main-content {
     width: 100%;
@@ -200,8 +225,12 @@ main {
     .sidebar-toggle-btn {
         display: block;
     }
-    .sidebar-toggle:checked + .sidebar {
-        transform: translateX(0);
+    /* Carrot points right when sidebar is closed, left when open */
+    .sidebar-toggle:not(:checked) + .sidebar .carrot {
+        transform: rotate(0deg); /* Right */
+    }
+    .sidebar-toggle:checked + .sidebar .carrot {
+        transform: rotate(180deg); /* Left */
     }
     .main-content {
         width: 100%;
