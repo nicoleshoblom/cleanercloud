@@ -46,12 +46,12 @@ import Layout from '../layouts/Layout.astro';
     }
     .who-left {
       padding: 0;
-      background: transparent; /* Remove gray background */
-      box-shadow: none;        /* Remove box shadow */
+      background: transparent;
+      box-shadow: none;
     }
     .who-right {
-      background: transparent; /* Remove gray background */
-      box-shadow: none;        /* Remove box shadow */
+      background: transparent;
+      box-shadow: none;
     }
     .profile-pic {
       width: 70%;
@@ -71,15 +71,18 @@ import Layout from '../layouts/Layout.astro';
         flex-direction: column;
         align-items: center;
         max-width: 98vw;
+        gap: 1.5rem;
       }
       .who-left, .who-right {
-        max-width: 95vw;
-        padding: 0;
+        max-width: 100vw;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
       }
       .profile-pic {
-        width: 80%;
-        max-width: 220px;
-        min-height: 100px;
+        width: 90vw;
+        max-width: 320px;
+        min-width: 100px;
       }
     }
   </style>
